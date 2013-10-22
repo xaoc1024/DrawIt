@@ -11,5 +11,6 @@
 @interface ANAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, assign) NSInteger inte;
 
 @end
