@@ -239,6 +239,7 @@ static float scale = 0.0f;
     glUniformMatrix4fv(program[PROGRAM_POINT].uniform[UNIFORM_MVP], 1, GL_FALSE, modelViewMatrix.m);
     
 }
+
 // Create a texture from an image
 - (textureInfo_t)textureFromName:(NSString *)name
 {
@@ -261,7 +262,7 @@ static float scale = 0.0f;
         // Allocate  memory needed for the bitmap context
         brushData = (GLubyte *) calloc(width * height * 4, sizeof(GLubyte));
         // Use  the bitmatp creation function provided by the Core Graphics framework.
-        brushContext = CGBitmapContextCreate(brushData, width, height, 8, width * 4, CGImageGetColorSpace(brushImage), kCGImageAlphaPremultipliedLast);
+        brushContext = CGBitmapContextCreate(brushData, width, height, 8, width * 4, CGImageGetColorSpace(brushImage),(int)kCGImageAlphaPremultipliedLast);
         // After you create the context, you can draw the  image to the context.
         CGContextDrawImage(brushContext, CGRectMake(0.0, 0.0, (CGFloat)width, (CGFloat)height), brushImage);
         // You don't need the context at this point, so you need to release it to avoid memory leaks.
