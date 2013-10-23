@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5CB4ADDE1816CE8E0034FE14 /* Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB4ADD81816CE8E0034FE14 /* Blue.png */; };
+		5CB4ADDF1816CE8E0034FE14 /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB4ADD91816CE8E0034FE14 /* Green.png */; };
+		5CB4ADE01816CE8E0034FE14 /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB4ADDA1816CE8E0034FE14 /* Particle.png */; };
+		5CB4ADE11816CE8E0034FE14 /* Purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB4ADDB1816CE8E0034FE14 /* Purple.png */; };
+		5CB4ADE21816CE8E0034FE14 /* Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB4ADDC1816CE8E0034FE14 /* Red.png */; };
+		5CB4ADE31816CE8E0034FE14 /* Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB4ADDD1816CE8E0034FE14 /* Yellow.png */; };
 		9596A47917F08C510092BE04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9596A47817F08C510092BE04 /* UIKit.framework */; };
 		9596A47B17F08C510092BE04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9596A47A17F08C510092BE04 /* Foundation.framework */; };
 		9596A47D17F08C510092BE04 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9596A47C17F08C510092BE04 /* CoreGraphics.framework */; };
@@ -28,15 +34,15 @@
 		9596A4B417F0911B0092BE04 /* ANPaintingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9596A4B317F0911B0092BE04 /* ANPaintingViewController.m */; };
 		9596A4B517F093C50092BE04 /* point.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 9596A4AE17F090CD0092BE04 /* point.fsh */; };
 		9596A4B617F093C50092BE04 /* point.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 9596A4AF17F090CD0092BE04 /* point.vsh */; };
-		9596A4B817F096520092BE04 /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9596A4B717F096520092BE04 /* Particle.png */; };
-		9596A4BE17F09A8C0092BE04 /* Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 9596A4B917F09A8B0092BE04 /* Blue.png */; };
-		9596A4BF17F09A8C0092BE04 /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 9596A4BA17F09A8B0092BE04 /* Green.png */; };
-		9596A4C017F09A8C0092BE04 /* Purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 9596A4BB17F09A8C0092BE04 /* Purple.png */; };
-		9596A4C117F09A8C0092BE04 /* Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9596A4BC17F09A8C0092BE04 /* Red.png */; };
-		9596A4C217F09A8C0092BE04 /* Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 9596A4BD17F09A8C0092BE04 /* Yellow.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5CB4ADD81816CE8E0034FE14 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Blue.png; path = Resources/Blue.png; sourceTree = "<group>"; };
+		5CB4ADD91816CE8E0034FE14 /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Green.png; path = Resources/Green.png; sourceTree = "<group>"; };
+		5CB4ADDA1816CE8E0034FE14 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Particle.png; path = Resources/Particle.png; sourceTree = "<group>"; };
+		5CB4ADDB1816CE8E0034FE14 /* Purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Purple.png; path = Resources/Purple.png; sourceTree = "<group>"; };
+		5CB4ADDC1816CE8E0034FE14 /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Red.png; path = Resources/Red.png; sourceTree = "<group>"; };
+		5CB4ADDD1816CE8E0034FE14 /* Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Yellow.png; path = Resources/Yellow.png; sourceTree = "<group>"; };
 		9596A47517F08C510092BE04 /* DrawIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9596A47817F08C510092BE04 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9596A47A17F08C510092BE04 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,12 +71,6 @@
 		9596A4AF17F090CD0092BE04 /* point.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = point.vsh; sourceTree = "<group>"; };
 		9596A4B217F0911B0092BE04 /* ANPaintingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANPaintingViewController.h; sourceTree = "<group>"; };
 		9596A4B317F0911B0092BE04 /* ANPaintingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANPaintingViewController.m; sourceTree = "<group>"; };
-		9596A4B717F096520092BE04 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Particle.png; sourceTree = "<group>"; };
-		9596A4B917F09A8B0092BE04 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue.png; sourceTree = "<group>"; };
-		9596A4BA17F09A8B0092BE04 /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Green.png; sourceTree = "<group>"; };
-		9596A4BB17F09A8C0092BE04 /* Purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Purple.png; sourceTree = "<group>"; };
-		9596A4BC17F09A8C0092BE04 /* Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Red.png; sourceTree = "<group>"; };
-		9596A4BD17F09A8C0092BE04 /* Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yellow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +90,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5CB4ADD71816CE3B0034FE14 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5CB4ADD81816CE8E0034FE14 /* Blue.png */,
+				5CB4ADD91816CE8E0034FE14 /* Green.png */,
+				5CB4ADDA1816CE8E0034FE14 /* Particle.png */,
+				5CB4ADDB1816CE8E0034FE14 /* Purple.png */,
+				5CB4ADDC1816CE8E0034FE14 /* Red.png */,
+				5CB4ADDD1816CE8E0034FE14 /* Yellow.png */,
+				9596A48A17F08C510092BE04 /* Default.png */,
+				9596A48C17F08C510092BE04 /* Default@2x.png */,
+				9596A48E17F08C510092BE04 /* Default-568h@2x.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		5CB4ADE41816D5AA0034FE14 /* Painting View */ = {
+			isa = PBXGroup;
+			children = (
+				9596A4A217F08FE90092BE04 /* ANPaintingView.h */,
+				9596A4A317F08FE90092BE04 /* ANPaintingView.m */,
+			);
+			name = "Painting View";
+			sourceTree = "<group>";
+		};
 		9596A46C17F08C510092BE04 = {
 			isa = PBXGroup;
 			children = (
@@ -135,21 +160,13 @@
 		9596A47F17F08C510092BE04 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9596A4B717F096520092BE04 /* Particle.png */,
 				9596A4AD17F090CD0092BE04 /* Shaders */,
 				9596A48017F08C510092BE04 /* DrawIt-Info.plist */,
+				9596A49517F08C6C0092BE04 /* MainStoryboard.storyboard */,
 				9596A48117F08C510092BE04 /* InfoPlist.strings */,
 				9596A48417F08C510092BE04 /* main.m */,
 				9596A48617F08C510092BE04 /* DrawIt-Prefix.pch */,
-				9596A48A17F08C510092BE04 /* Default.png */,
-				9596A48C17F08C510092BE04 /* Default@2x.png */,
-				9596A48E17F08C510092BE04 /* Default-568h@2x.png */,
-				9596A49517F08C6C0092BE04 /* MainStoryboard.storyboard */,
-				9596A4B917F09A8B0092BE04 /* Blue.png */,
-				9596A4BA17F09A8B0092BE04 /* Green.png */,
-				9596A4BB17F09A8C0092BE04 /* Purple.png */,
-				9596A4BC17F09A8C0092BE04 /* Red.png */,
-				9596A4BD17F09A8C0092BE04 /* Yellow.png */,
+				5CB4ADD71816CE3B0034FE14 /* Resources */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -158,8 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				9596A49B17F08D490092BE04 /* Controller */,
-				9596A4A217F08FE90092BE04 /* ANPaintingView.h */,
-				9596A4A317F08FE90092BE04 /* ANPaintingView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -169,6 +184,7 @@
 			children = (
 				9596A4B217F0911B0092BE04 /* ANPaintingViewController.h */,
 				9596A4B317F0911B0092BE04 /* ANPaintingViewController.m */,
+				5CB4ADE41816D5AA0034FE14 /* Painting View */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -248,17 +264,17 @@
 			files = (
 				9596A4B517F093C50092BE04 /* point.fsh in Resources */,
 				9596A4B617F093C50092BE04 /* point.vsh in Resources */,
+				5CB4ADE11816CE8E0034FE14 /* Purple.png in Resources */,
 				9596A48317F08C510092BE04 /* InfoPlist.strings in Resources */,
+				5CB4ADE01816CE8E0034FE14 /* Particle.png in Resources */,
 				9596A48B17F08C510092BE04 /* Default.png in Resources */,
+				5CB4ADDF1816CE8E0034FE14 /* Green.png in Resources */,
 				9596A48D17F08C510092BE04 /* Default@2x.png in Resources */,
 				9596A48F17F08C510092BE04 /* Default-568h@2x.png in Resources */,
 				9596A49617F08C6C0092BE04 /* MainStoryboard.storyboard in Resources */,
-				9596A4B817F096520092BE04 /* Particle.png in Resources */,
-				9596A4BE17F09A8C0092BE04 /* Blue.png in Resources */,
-				9596A4BF17F09A8C0092BE04 /* Green.png in Resources */,
-				9596A4C017F09A8C0092BE04 /* Purple.png in Resources */,
-				9596A4C117F09A8C0092BE04 /* Red.png in Resources */,
-				9596A4C217F09A8C0092BE04 /* Yellow.png in Resources */,
+				5CB4ADDE1816CE8E0034FE14 /* Blue.png in Resources */,
+				5CB4ADE31816CE8E0034FE14 /* Yellow.png in Resources */,
+				5CB4ADE21816CE8E0034FE14 /* Red.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

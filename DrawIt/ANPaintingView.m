@@ -202,7 +202,7 @@ static float scale = 0.0f;
             glUniformMatrix4fv(program[PROGRAM_POINT].uniform[UNIFORM_MVP], 1, GL_FALSE, modelViewMatrix.m);
             
             // point size
-            glUniform1f(program[PROGRAM_POINT].uniform[UNIFORM_POINT_SIZE], brushTexture.width / kBrushScale);
+            glUniform1f(program[PROGRAM_POINT].uniform[UNIFORM_POINT_SIZE], 10.0);
             
             // initialize brush color
             glUniform4fv(program[PROGRAM_POINT].uniform[UNIFORM_VERTEX_COLOR], 1, brushColor);
@@ -211,34 +211,13 @@ static float scale = 0.0f;
     
     glError();
 }
-- (void)increaseScale {
-    scale += 50;
+- (void)setBrushWidth:(NSInteger)brushWidth {
+    _brushWidth = brushWidth;
     glUseProgram(program[PROGRAM_POINT].id);
-    
-    // the brush texture will be bound to texture unit 0
-    glUniform1i(program[PROGRAM_POINT].uniform[UNIFORM_TEXTURE], 0);
-    
-    // viewing matrices
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, backingWidth + scale, 0, backingHeight + scale, -1024, 1024);
-    GLKMatrix4 modelViewMatrix = GLKMatrix4Scale(projectionMatrix, 1, 1, 1);// this sample uses a constant identity modelView matrix
-    
-    glUniformMatrix4fv(program[PROGRAM_POINT].uniform[UNIFORM_MVP], 1, GL_FALSE, modelViewMatrix.m);
+    glUniform1f(program[PROGRAM_POINT].uniform[UNIFORM_POINT_SIZE], brushWidth);
 }
 
-- (void)decreaseScale {
-    scale -= 50;
-    glUseProgram(program[PROGRAM_POINT].id);
-    
-    // the brush texture will be bound to texture unit 0
-    glUniform1i(program[PROGRAM_POINT].uniform[UNIFORM_TEXTURE], 0);
-    
-    // viewing matrices
-    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, backingWidth + scale, 0, backingHeight + scale, -1024, 1024);
-    GLKMatrix4 modelViewMatrix = GLKMatrix4Scale(projectionMatrix, 1, 1, 1);// this sample uses a constant identity modelView matrix
-    
-    glUniformMatrix4fv(program[PROGRAM_POINT].uniform[UNIFORM_MVP], 1, GL_FALSE, modelViewMatrix.m);
-    
-}
+
 
 // Create a texture from an image
 - (textureInfo_t)textureFromName:(NSString *)name
@@ -478,17 +457,21 @@ static float scale = 0.0f;
 // Handles the start of a touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    ;
 	CGRect				bounds = [self bounds];
     UITouch*	touch = [[event touchesForView:self] anyObject];
 	firstTouch = YES;
 	// Convert touch point from UIView referential to OpenGL one (upside-down flip)
 	location = [touch locationInView:self];
 	location.y = bounds.size.height - location.y;
+    NSLog(@"TouchesBegan with location \nx: %d\ny: %d", (int)location.x, (int)location.y);
+   
 }
 
 // Handles the continuation of a touch.
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    
 	CGRect				bounds = [self bounds];
 	UITouch*			touch = [[event touchesForView:self] anyObject];
     
@@ -503,7 +486,7 @@ static float scale = 0.0f;
 		previousLocation = [touch previousLocationInView:self];
 		previousLocation.y = bounds.size.height - previousLocation.y;
 	}
-    
+     NSLog(@"TouchesMoved to location \nx: %d\ny: %d", (int)location.x, (int)location.y);
 	// Render the stroke
 	[self renderLineFromPoint:previousLocation toPoint:location];
 }
@@ -517,16 +500,17 @@ static float scale = 0.0f;
 		firstTouch = NO;
 		previousLocation = [touch previousLocationInView:self];
 		previousLocation.y = bounds.size.height - previousLocation.y;
-		[self renderLineFromPoint:previousLocation toPoint:location];
+//		[self renderLineFromPoint:previousLocation toPoint:location];
 	}
+    NSLog(@"TouchesEnded");
 }
 
 - (void)setBrushColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue
 {
 	// Update the brush color
-    brushColor[0] = red * kBrushOpacity;
-    brushColor[1] = green * kBrushOpacity;
-    brushColor[2] = blue * kBrushOpacity;
+    brushColor[0] = red;// * kBrushOpacity;
+    brushColor[1] = green;// * kBrushOpacity;
+    brushColor[2] = blue ;//* kBrushOpacity;
     brushColor[3] = kBrushOpacity;
     
     if (initialized) {

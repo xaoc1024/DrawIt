@@ -30,58 +30,33 @@
 {
 	CFTimeInterval		lastTime;
 }
+
 @property (nonatomic, weak) IBOutlet ANPaintingView * paintingView;
+@property (nonatomic, weak) IBOutlet UISlider * slider;
 
 - (IBAction)button:(UIButton *)sender;
+- (IBAction)sliderAction:(id)sender;
 @end
 
 @implementation ANPaintingViewController
 
 - (IBAction)buttonPlus:(UIButton *)sender {
-    ANPaintingView *view = (ANPaintingView *)self.view;
-    [view increaseScale];
 }
 
 - (IBAction)buttonMinus:(UIButton *)sender {
-    ANPaintingView *view = (ANPaintingView *)self.view;
-    [view decreaseScale];
 }
+
 - (void)viewDidLoad
 {
-    // Create a segmented control so that the user can choose the brush color.
-	UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:
-											[NSArray arrayWithObjects:
-                                             [UIImage imageNamed:@"Red.png"],
-                                             [UIImage imageNamed:@"Yellow.png"],
-                                             [UIImage imageNamed:@"Green.png"],
-                                             [UIImage imageNamed:@"Blue.png"],
-                                             [UIImage imageNamed:@"Purple.png"],
-                                             nil]];
-	
-	// Compute a rectangle that is positioned correctly for the segmented control you'll use as a brush color palette
-    CGRect rect = self.view.bounds;
-	CGRect frame = CGRectMake(rect.origin.x + kLeftMargin, rect.size.height - kPaletteHeight - kTopMargin, rect.size.width - (kLeftMargin + kRightMargin), kPaletteHeight);
-	segmentedControl.frame = frame;
-	// When the user chooses a color, the method changeBrushColor: is called.
-	[segmentedControl addTarget:self action:@selector(changeBrushColor:) forControlEvents:UIControlEventValueChanged];
-	segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-	// Make sure the color of the color complements the black background
-	segmentedControl.tintColor = [UIColor darkGrayColor];
-	// Set the third color (index values start at 0)
-	segmentedControl.selectedSegmentIndex = 2;
-	
-	// Add the control to the window
-	[self.view addSubview:segmentedControl];
-    
     // Define a starting color
     CGColorRef color = [UIColor colorWithHue:(CGFloat)2.0 / (CGFloat)kPaletteSize
                                   saturation:kSaturation
                                   brightness:kBrightness
                                        alpha:1.0].CGColor;
-    const CGFloat *components = CGColorGetComponents(color);
     
 	// Defer to the OpenGL view to set the brush color
-	[(ANPaintingView *)self.view setBrushColorWithRed:1.0f green:0.0f blue:0.0f];
+	[self.paintingView setBrushColorWithRed:1.0f green:0.0f blue:0.0f];
+    [self.paintingView setBrushWidth: (int)self.slider.value];
 }
 
 // Change the brush color
@@ -95,17 +70,21 @@
     const CGFloat *components = CGColorGetComponents(color);
     
 	// Defer to the OpenGL view to set the brush color
-	[(ANPaintingView *)self.view setBrushColorWithRed:components[0] green:components[1] blue:components[2]];
+	[self.paintingView setBrushColorWithRed:components[0] green:components[1] blue:components[2]];
     
 }
 
 // Called when receiving the "shake" notification; plays the erase sound and redraws the view
-- (void)eraseView
+- (IBAction)eraseButtonAction:(UIButton *)button
 {
 	if(CFAbsoluteTimeGetCurrent() > lastTime + kMinEraseInterval) {
-		[(ANPaintingView *)self.view erase];
+		[self.paintingView erase];
 		lastTime = CFAbsoluteTimeGetCurrent();
 	}
 }
 
+- (IBAction)sliderAction:(id)sender {
+    UISlider * slider = (UISlider *)sender;
+    self.paintingView.brushWidth = slider.value;
+}
 @end
