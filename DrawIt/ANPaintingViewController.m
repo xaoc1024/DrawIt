@@ -30,6 +30,8 @@
 {
 	CFTimeInterval		lastTime;
 }
+@property (nonatomic, weak) IBOutlet ANPaintingView * paintingView;
+
 - (IBAction)button:(UIButton *)sender;
 @end
 

@@ -9,7 +9,7 @@
         <scene sceneID="rl6-LR-3vy">
             <objects>
                 <viewController autoresizesArchivedViewToFullSize="NO" id="sIw-5Z-p3V" customClass="ANPaintingViewController" sceneMemberID="viewController">
-                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="XbN-6U-pKc" customClass="ANPaintingView">
+                    <view key="view" autoresizesSubviews="NO" contentMode="scaleToFill" id="XbN-6U-pKc">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
@@ -33,6 +33,16 @@
                                     <action selector="buttonMinus:" destination="sIw-5Z-p3V" eventType="touchUpInside" id="pkT-Rj-62q"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" id="KPV-3S-Fwb">
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="stv-YO-7me" customClass="ANPaintingView">
+                                <rect key="frame" x="200" y="0.0" width="825" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.3050726829" green="0.97660495920000001" blue="0.149237851" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
