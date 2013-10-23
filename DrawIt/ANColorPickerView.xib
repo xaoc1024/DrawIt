@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none">
+    <dependencies>
+        <deployment defaultVersion="1552" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="AZF-2g-ZMQ" userLabel="ColorPicker" customClass="ANColorPickerView">
+            <rect key="frame" x="0.0" y="0.0" width="200" height="256"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color Picker" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1G5-Kf-BhF" userLabel="Title">
+                    <rect key="frame" x="0.0" y="4" width="200" height="21"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="Georgia-Bold" family="Georgia" pointSize="18"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" id="Zw8-IQ-wiO" userLabel="Red">
+                    <rect key="frame" x="10" y="40" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" id="b7e-U5-Wo6" userLabel="Green">
+                    <rect key="frame" x="10" y="75" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" id="3sB-3E-VM6" userLabel="Blue">
+                    <rect key="frame" x="10" y="110" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="A01-mo-Xzc" userLabel="Red Slider">
+                    <rect key="frame" x="41" y="33" width="141" height="34"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="redSliderAction:" destination="AZF-2g-ZMQ" eventType="valueChanged" id="A3i-aF-dxa"/>
+                    </connections>
+                </slider>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="A40-Fw-wYL" userLabel="Green Slider">
+                    <rect key="frame" x="41" y="68" width="141" height="34"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="greenSliderAction:" destination="AZF-2g-ZMQ" eventType="valueChanged" id="esC-wF-6ft"/>
+                    </connections>
+                </slider>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="Vhr-aD-gHo" userLabel="Blue Slider">
+                    <rect key="frame" x="41" y="103" width="141" height="34"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="blueSliderAction:" destination="AZF-2g-ZMQ" eventType="valueChanged" id="6MI-Lg-x8k"/>
+                    </connections>
+                </slider>
+                <view opaque="NO" contentMode="scaleToFill" id="ecC-je-vP7" userLabel="Transparency">
+                    <rect key="frame" x="10" y="145" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="dJJ-4Y-vVe" userLabel="Transparency Slider">
+                    <rect key="frame" x="41" y="139" width="141" height="34"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <connections>
+                        <action selector="alphaSliderAction:" destination="AZF-2g-ZMQ" eventType="valueChanged" id="q0A-6i-tuS"/>
+                    </connections>
+                </slider>
+                <view contentMode="scaleToFill" id="5PM-dB-x1E" userLabel="Sample View">
+                    <rect key="frame" x="50" y="180" width="100" height="62"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="alphaColorSampleView" destination="ecC-je-vP7" id="Dqk-c5-8au"/>
+                <outlet property="alphaSlider" destination="dJJ-4Y-vVe" id="HIK-Ei-OHv"/>
+                <outlet property="blueColorSampleView" destination="3sB-3E-VM6" id="aVI-a8-JIv"/>
+                <outlet property="blueSlider" destination="Vhr-aD-gHo" id="zhg-ak-WsQ"/>
+                <outlet property="colorSampleView" destination="5PM-dB-x1E" id="v2N-RE-zMX"/>
+                <outlet property="greenColorSampleView" destination="b7e-U5-Wo6" id="E33-AY-rlu"/>
+                <outlet property="greenSlider" destination="A40-Fw-wYL" id="C0l-C1-xIk"/>
+                <outlet property="redColorSampleView" destination="Zw8-IQ-wiO" id="iG7-oG-e35"/>
+                <outlet property="redSlider" destination="A01-mo-Xzc" id="Al9-sf-IPs"/>
+            </connections>
+        </view>
+    </objects>
+</document>

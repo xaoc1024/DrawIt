@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface ANPaintingViewController : UIViewController
+#import "ANColorPickerDelegate.h"
+@interface ANPaintingViewController : UIViewController <ANColorPickerDelegate>
 
 @end

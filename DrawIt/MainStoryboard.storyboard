@@ -13,27 +13,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="fOF-U1-vax">
-                                <rect key="frame" x="20" y="705" width="73" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="+">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonPlus:" destination="sIw-5Z-p3V" eventType="touchUpInside" id="Dtw-VA-qNH"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lIR-8Z-ZXm">
-                                <rect key="frame" x="132" y="705" width="73" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="-">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="buttonMinus:" destination="sIw-5Z-p3V" eventType="touchUpInside" id="pkT-Rj-62q"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" id="KPV-3S-Fwb">
+                            <view contentMode="scaleToFill" id="KPV-3S-Fwb" userLabel="Instruments View">
                                 <rect key="frame" x="0.0" y="0.0" width="200" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -55,14 +35,35 @@
                                             <action selector="eraseButtonAction:" destination="sIw-5Z-p3V" eventType="touchUpInside" id="BMp-ey-6DD"/>
                                         </connections>
                                     </button>
+                                    <view contentMode="scaleToFill" id="0SG-JD-g0j" userLabel="Color Picker">
+                                        <rect key="frame" x="0.0" y="167" width="200" height="256"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" id="stv-YO-7me" customClass="ANPaintingView">
-                                <rect key="frame" x="200" y="0.0" width="825" height="768"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.3050726829" green="0.97660495920000001" blue="0.149237851" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="LaK-tW-81l">
+                                <rect key="frame" x="200" y="0.0" width="824" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="fQK-bN-xu3" userLabel="Horizontal Rule">
+                                        <rect key="frame" x="15" y="0.0" width="809" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="lbJ-7c-06c" userLabel="Vertical Rule">
+                                        <rect key="frame" x="0.0" y="15" width="15" height="753"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" id="stv-YO-7me" customClass="ANPaintingView">
+                                        <rect key="frame" x="15" y="15" width="809" height="753"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.3050726829" green="0.97660495920000001" blue="0.149237851" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -72,6 +73,8 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="colorPickerStub" destination="0SG-JD-g0j" id="CZx-dP-4ZW"/>
+                        <outlet property="instrumentsView" destination="KPV-3S-Fwb" id="ZnL-bI-fBs"/>
                         <outlet property="paintingView" destination="stv-YO-7me" id="97y-ls-CPC"/>
                         <outlet property="slider" destination="GjQ-hI-70Y" id="9Cl-7E-Jh1"/>
                         <outlet property="view" destination="XbN-6U-pKc" id="lfN-05-tFa"/>

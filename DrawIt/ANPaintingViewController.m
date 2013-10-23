@@ -9,6 +9,7 @@
 #import "ANPaintingViewController.h"
 
 #import "ANPaintingView.h"
+#import "ANColorPickerView.h"
 
 //CONSTANTS:
 
@@ -33,6 +34,8 @@
 
 @property (nonatomic, weak) IBOutlet ANPaintingView * paintingView;
 @property (nonatomic, weak) IBOutlet UISlider * slider;
+@property (nonatomic, weak) IBOutlet UIView * colorPickerStub;
+@property (nonatomic, weak) IBOutlet UIView * instrumentsView;
 
 - (IBAction)button:(UIButton *)sender;
 - (IBAction)sliderAction:(id)sender;
@@ -48,15 +51,16 @@
 
 - (void)viewDidLoad
 {
-    // Define a starting color
-    CGColorRef color = [UIColor colorWithHue:(CGFloat)2.0 / (CGFloat)kPaletteSize
-                                  saturation:kSaturation
-                                  brightness:kBrightness
-                                       alpha:1.0].CGColor;
     
 	// Defer to the OpenGL view to set the brush color
-	[self.paintingView setBrushColorWithRed:1.0f green:0.0f blue:0.0f];
     [self.paintingView setBrushWidth: (int)self.slider.value];
+    ANColorPickerView * colorPickerView = [[[UINib nibWithNibName:@"ANColorPickerView" bundle:[NSBundle mainBundle]]
+                                            instantiateWithOwner:self options:Nil]
+                                           lastObject];
+    colorPickerView.frame = self.colorPickerStub.frame;
+    [self.instrumentsView addSubview:colorPickerView];
+    colorPickerView.delegate = self;
+    self.paintingView.color = colorPickerView.color;
 }
 
 // Change the brush color
@@ -87,4 +91,10 @@
     UISlider * slider = (UISlider *)sender;
     self.paintingView.brushWidth = slider.value;
 }
+
+#pragma mark - ANColorPickerDelegate
+- (void)colorPickerView:(ANColorPickerView *)colorPickerView didPickColor:(UIColor *)color {
+    self.paintingView.color = color;
+}
+
 @end

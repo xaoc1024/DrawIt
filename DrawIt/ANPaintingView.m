@@ -131,7 +131,23 @@ static float scale = 0.0f;
 	
 	return self;
 }
+- (void)setColor:(UIColor *)color {
+    _color = color;
+    float red;
+    float green;
+    float blue;
+    float alpha;
+    
+    [color getRed:&red green:&green blue:&blue alpha:&alpha];
+    
+    [self setBrushColorWithRed:red green:green blue:blue alpha:alpha];
+}
 
+- (void)setBrushWidth:(NSInteger)brushWidth {
+    _brushWidth = brushWidth;
+    glUseProgram(program[PROGRAM_POINT].id);
+    glUniform1f(program[PROGRAM_POINT].uniform[UNIFORM_POINT_SIZE], brushWidth);
+}
 // If our view is resized, we'll be asked to layout subviews.
 // This is the perfect opportunity to also update the framebuffer so that it is
 // the same size as our display area.
@@ -211,13 +227,6 @@ static float scale = 0.0f;
     
     glError();
 }
-- (void)setBrushWidth:(NSInteger)brushWidth {
-    _brushWidth = brushWidth;
-    glUseProgram(program[PROGRAM_POINT].id);
-    glUniform1f(program[PROGRAM_POINT].uniform[UNIFORM_POINT_SIZE], brushWidth);
-}
-
-
 
 // Create a texture from an image
 - (textureInfo_t)textureFromName:(NSString *)name
@@ -444,28 +453,27 @@ static float scale = 0.0f;
     i;
 	
 	// Render the current path
-	for(i = 0; i < count - 1; ++i, ++point)
+	for(i = 0; i < count - 1; ++i, ++point) {
 		[self renderLineFromPoint:*point toPoint:*(point + 1)];
-	
+	}
 	// Render the next path after a short delay
 	[recordedPaths removeObjectAtIndex:0];
 	if([recordedPaths count])
 		[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.01];
 }
 
+#pragma mark - touches handling
 
 // Handles the start of a touch
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    ;
 	CGRect				bounds = [self bounds];
     UITouch*	touch = [[event touchesForView:self] anyObject];
-	firstTouch = YES;
 	// Convert touch point from UIView referential to OpenGL one (upside-down flip)
 	location = [touch locationInView:self];
 	location.y = bounds.size.height - location.y;
-    NSLog(@"TouchesBegan with location \nx: %d\ny: %d", (int)location.x, (int)location.y);
-   
+    [self renderLineFromPoint:location toPoint:location];
+    NSLog(@"touchesBegan");
 }
 
 // Handles the continuation of a touch.
@@ -475,43 +483,37 @@ static float scale = 0.0f;
 	CGRect				bounds = [self bounds];
 	UITouch*			touch = [[event touchesForView:self] anyObject];
     
-	// Convert touch point from UIView referential to OpenGL one (upside-down flip)
-	if (firstTouch) {
-		firstTouch = NO;
-		previousLocation = [touch previousLocationInView:self];
-		previousLocation.y = bounds.size.height - previousLocation.y;
-	} else {
-		location = [touch locationInView:self];
-	    location.y = bounds.size.height - location.y;
-		previousLocation = [touch previousLocationInView:self];
-		previousLocation.y = bounds.size.height - previousLocation.y;
-	}
-     NSLog(@"TouchesMoved to location \nx: %d\ny: %d", (int)location.x, (int)location.y);
+    previousLocation = location;
+    location = [touch locationInView:self];
+    location.y = bounds.size.height - location.y;
+    
 	// Render the stroke
 	[self renderLineFromPoint:previousLocation toPoint:location];
+    NSLog(@"touchesMoved");
 }
 
 // Handles the end of a touch event when the touch is a tap.
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-	CGRect				bounds = [self bounds];
+    CGRect				bounds = [self bounds];
     UITouch*	touch = [[event touchesForView:self] anyObject];
-	if (firstTouch) {
-		firstTouch = NO;
-		previousLocation = [touch previousLocationInView:self];
-		previousLocation.y = bounds.size.height - previousLocation.y;
-//		[self renderLineFromPoint:previousLocation toPoint:location];
-	}
-    NSLog(@"TouchesEnded");
+
+    previousLocation = location;
+    location = [touch locationInView:self];
+    location.y = bounds.size.height - location.y;
+    [self renderLineFromPoint:previousLocation toPoint:location];
+
+	previousLocation = location = CGPointZero;
+        NSLog(@"touchesEnded");
 }
 
-- (void)setBrushColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue
+- (void)setBrushColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat) alpha
 {
 	// Update the brush color
     brushColor[0] = red;// * kBrushOpacity;
     brushColor[1] = green;// * kBrushOpacity;
     brushColor[2] = blue ;//* kBrushOpacity;
-    brushColor[3] = kBrushOpacity;
+    brushColor[3] = alpha;
     
     if (initialized) {
         glUseProgram(program[PROGRAM_POINT].id);

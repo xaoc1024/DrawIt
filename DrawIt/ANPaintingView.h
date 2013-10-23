@@ -18,10 +18,11 @@
 @property(nonatomic, readwrite) CGPoint location;
 @property(nonatomic, readwrite) CGPoint previousLocation;
 @property(nonatomic, assign) NSInteger brushWidth;
-
+@property (nonatomic, strong) UIColor * color;
 - (void)erase;
 - (void)setBrushColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
 - (void)increaseScale;
 - (void)decreaseScale;
+
 
 @end

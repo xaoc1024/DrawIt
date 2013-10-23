@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C0AC2801817FB39001DAA5C /* ANColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0AC27F1817FB39001DAA5C /* ANColorPickerView.m */; };
+		5C0AC2831817FB5B001DAA5C /* ANColorPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0AC2821817FB5B001DAA5C /* ANColorPickerView.xib */; };
 		5CB4ADDE1816CE8E0034FE14 /* Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB4ADD81816CE8E0034FE14 /* Blue.png */; };
 		5CB4ADDF1816CE8E0034FE14 /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB4ADD91816CE8E0034FE14 /* Green.png */; };
 		5CB4ADE01816CE8E0034FE14 /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB4ADDA1816CE8E0034FE14 /* Particle.png */; };
@@ -37,6 +39,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C0AC27E1817FB39001DAA5C /* ANColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANColorPickerView.h; sourceTree = "<group>"; };
+		5C0AC27F1817FB39001DAA5C /* ANColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANColorPickerView.m; sourceTree = "<group>"; };
+		5C0AC2821817FB5B001DAA5C /* ANColorPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ANColorPickerView.xib; sourceTree = "<group>"; };
+		5C0AC284181807FD001DAA5C /* ANColorPickerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ANColorPickerDelegate.h; sourceTree = "<group>"; };
 		5CB4ADD81816CE8E0034FE14 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Blue.png; path = Resources/Blue.png; sourceTree = "<group>"; };
 		5CB4ADD91816CE8E0034FE14 /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Green.png; path = Resources/Green.png; sourceTree = "<group>"; };
 		5CB4ADDA1816CE8E0034FE14 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Particle.png; path = Resources/Particle.png; sourceTree = "<group>"; };
@@ -90,6 +96,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C0AC2811817FB3E001DAA5C /* Color picker view */ = {
+			isa = PBXGroup;
+			children = (
+				5C0AC27E1817FB39001DAA5C /* ANColorPickerView.h */,
+				5C0AC27F1817FB39001DAA5C /* ANColorPickerView.m */,
+				5C0AC2821817FB5B001DAA5C /* ANColorPickerView.xib */,
+				5C0AC284181807FD001DAA5C /* ANColorPickerDelegate.h */,
+			);
+			name = "Color picker view";
+			sourceTree = "<group>";
+		};
 		5CB4ADD71816CE3B0034FE14 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				9596A49B17F08D490092BE04 /* Controller */,
+				5C0AC2811817FB3E001DAA5C /* Color picker view */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -273,6 +291,7 @@
 				9596A48F17F08C510092BE04 /* Default-568h@2x.png in Resources */,
 				9596A49617F08C6C0092BE04 /* MainStoryboard.storyboard in Resources */,
 				5CB4ADDE1816CE8E0034FE14 /* Blue.png in Resources */,
+				5C0AC2831817FB5B001DAA5C /* ANColorPickerView.xib in Resources */,
 				5CB4ADE31816CE8E0034FE14 /* Yellow.png in Resources */,
 				5CB4ADE21816CE8E0034FE14 /* Red.png in Resources */,
 			);
@@ -286,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9596A48517F08C510092BE04 /* main.m in Sources */,
+				5C0AC2801817FB39001DAA5C /* ANColorPickerView.m in Sources */,
 				9596A48917F08C510092BE04 /* ANAppDelegate.m in Sources */,
 				9596A4A417F08FE90092BE04 /* ANPaintingView.m in Sources */,
 				9596A4AB17F0907C0092BE04 /* fileUtil.m in Sources */,
