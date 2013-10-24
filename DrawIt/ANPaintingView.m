@@ -465,47 +465,47 @@ static float scale = 0.0f;
 #pragma mark - touches handling
 
 // Handles the start of a touch
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-	CGRect				bounds = [self bounds];
-    UITouch*	touch = [[event touchesForView:self] anyObject];
-	// Convert touch point from UIView referential to OpenGL one (upside-down flip)
-	location = [touch locationInView:self];
-	location.y = bounds.size.height - location.y;
-    [self renderLineFromPoint:location toPoint:location];
-    NSLog(@"touchesBegan");
-}
-
-// Handles the continuation of a touch.
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    
-	CGRect				bounds = [self bounds];
-	UITouch*			touch = [[event touchesForView:self] anyObject];
-    
-    previousLocation = location;
-    location = [touch locationInView:self];
-    location.y = bounds.size.height - location.y;
-    
-	// Render the stroke
-	[self renderLineFromPoint:previousLocation toPoint:location];
-    NSLog(@"touchesMoved");
-}
-
-// Handles the end of a touch event when the touch is a tap.
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    CGRect				bounds = [self bounds];
-    UITouch*	touch = [[event touchesForView:self] anyObject];
-
-    previousLocation = location;
-    location = [touch locationInView:self];
-    location.y = bounds.size.height - location.y;
-    [self renderLineFromPoint:previousLocation toPoint:location];
-
-	previousLocation = location = CGPointZero;
-        NSLog(@"touchesEnded");
-}
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//	CGRect				bounds = [self bounds];
+//    UITouch*	touch = [[event touchesForView:self] anyObject];
+//	// Convert touch point from UIView referential to OpenGL one (upside-down flip)
+//	location = [touch locationInView:self];
+//	location.y = bounds.size.height - location.y;
+//    [self renderLineFromPoint:location toPoint:location];
+//    NSLog(@"touchesBegan");
+//}
+//
+//// Handles the continuation of a touch.
+//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    
+//	CGRect				bounds = [self bounds];
+//	UITouch*			touch = [[event touchesForView:self] anyObject];
+//    
+//    previousLocation = location;
+//    location = [touch locationInView:self];
+//    location.y = bounds.size.height - location.y;
+//    
+//	// Render the stroke
+//	[self renderLineFromPoint:previousLocation toPoint:location];
+//    NSLog(@"touchesMoved");
+//}
+//
+//// Handles the end of a touch event when the touch is a tap.
+//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    CGRect				bounds = [self bounds];
+//    UITouch*	touch = [[event touchesForView:self] anyObject];
+//
+//    previousLocation = location;
+//    location = [touch locationInView:self];
+//    location.y = bounds.size.height - location.y;
+//    [self renderLineFromPoint:previousLocation toPoint:location];
+//
+//	previousLocation = location = CGPointZero;
+//        NSLog(@"touchesEnded");
+//}
 
 - (void)setBrushColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat) alpha
 {

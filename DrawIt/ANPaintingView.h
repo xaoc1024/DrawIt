@@ -20,9 +20,8 @@
 @property(nonatomic, assign) NSInteger brushWidth;
 @property (nonatomic, strong) UIColor * color;
 - (void)erase;
-- (void)setBrushColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
 - (void)increaseScale;
 - (void)decreaseScale;
-
+- (void)renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end;
 
 @end

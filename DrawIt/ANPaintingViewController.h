@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ANColorPickerDelegate.h"
-@interface ANPaintingViewController : UIViewController <ANColorPickerDelegate>
+#import "ANCreateImageDialogViewDelegate.h"
+
+@interface ANPaintingViewController : UIViewController <UIScrollViewDelegate,
+ANColorPickerDelegate,
+ANCreateImageDialogViewDelegate>
 
 @end

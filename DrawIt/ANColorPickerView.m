@@ -25,6 +25,7 @@
     _greenColor = 0.0f;
     _blueColor = 0.0f;
     _alphaColor = 1.0f;
+    self.layer.cornerRadius = 10;
 }
 
 - (IBAction)redSliderAction:(UISlider *)sender {
