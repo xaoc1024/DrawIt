@@ -19,7 +19,7 @@
 //CONSTANTS:
 
 #define kBrushOpacity		(1.0 / 3.0)
-#define kBrushPixelStep		3
+#define kBrushPixelStep		2
 #define kBrushScale			2
 
 
@@ -59,7 +59,6 @@ typedef struct {
     GLsizei width, height;
 } textureInfo_t;
 
-static float scale = 0.0f;
 @interface ANPaintingView()
 {
 	// The pixel dimensions of the backbuffer
@@ -100,14 +99,12 @@ static float scale = 0.0f;
 
 // Implement this to override the default layer class (which is [CALayer class]).
 // We do this so that our view will be backed by a layer that is capable of OpenGL ES rendering.
-+ (Class)layerClass
-{
++ (Class)layerClass {
 	return [CAEAGLLayer class];
 }
 
 // The GL view is stored in the nib file. When it's unarchived it's sent -initWithCoder:
 - (id)initWithCoder:(NSCoder*)coder {
-	
     if ((self = [super initWithCoder:coder])) {
 		CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
 		
@@ -127,10 +124,12 @@ static float scale = 0.0f;
         
 		// Make sure to start with a cleared buffer
 		needsErase = YES;
+        _scaleFactor = 1.0f;
 	}
 	
 	return self;
 }
+
 - (void)setColor:(UIColor *)color {
     _color = color;
     float red;
@@ -159,7 +158,8 @@ static float scale = 0.0f;
         initialized = [self initGL];
     }
     else {
-        [self resizeFromLayer:(CAEAGLLayer*)self.layer];
+//        [self resizeFromLayer:(CAEAGLLayer*)self.layer];
+        [self zoom];
     }
 	
 	// Clear the framebuffer the first time it is allocated
@@ -212,8 +212,7 @@ static float scale = 0.0f;
             
             // viewing matrices
             GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, backingWidth, 0, backingHeight, -1024, 1024);
-            GLKMatrix4 modelViewMatrix = GLKMatrix4Rotate(projectionMatrix, 0.0, 0, 0, 1);// this sample uses a constant identity modelView matrix
-            GLKMatrix4 MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+            GLKMatrix4 modelViewMatrix = GLKMatrix4Rotate(projectionMatrix, 0.0, 0, 0, 1);// this sample
             
             glUniformMatrix4fv(program[PROGRAM_POINT].uniform[UNIFORM_MVP], 1, GL_FALSE, modelViewMatrix.m);
             
@@ -323,6 +322,7 @@ static float scale = 0.0f;
 	glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_WIDTH, &backingWidth);
     glGetRenderbufferParameteriv(GL_RENDERBUFFER, GL_RENDERBUFFER_HEIGHT, &backingHeight);
 	
+    
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 	{
         NSLog(@"Failed to make complete framebuffer object %x", glCheckFramebufferStatus(GL_FRAMEBUFFER));
@@ -340,7 +340,39 @@ static float scale = 0.0f;
     // Update viewport
     glViewport(0, 0, backingWidth, backingHeight);
 	
+     [self erase];
     return YES;
+}
+
+- (void) zoom {
+    [EAGLContext setCurrentContext:context];
+    backingHeight = self.layer.frame.size.height;
+    backingWidth = self.layer.frame.size.width;
+
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(0, backingWidth, 0, backingHeight, -1, 1);
+    GLKMatrix4 modelViewMatrix = GLKMatrix4Identity; // this sample uses a constant identity modelView matrix
+    GLKMatrix4 MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+    
+    glUseProgram(program[PROGRAM_POINT].id);
+    glUniformMatrix4fv(program[PROGRAM_POINT].uniform[UNIFORM_MVP], 1, GL_FALSE, MVPMatrix.m);
+    
+    // Update viewport
+    glViewport(0, 0, backingWidth, backingHeight);
+}
+
+- (void)testFunc:(NSInteger)val {
+    [EAGLContext setCurrentContext:context];
+    backingHeight = self.layer.frame.size.height;
+    backingWidth = self.layer.frame.size.width;
+    GLKMatrix4 projectionMatrix = GLKMatrix4MakeOrtho(40, backingWidth-40, 40, backingHeight-40, 0, 1);
+    GLKMatrix4 modelViewMatrix = GLKMatrix4Identity;// this sample uses a constant identity modelView matrix
+    GLKMatrix4 MVPMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+    
+    glUseProgram(program[PROGRAM_POINT].id);
+    glUniformMatrix4fv(program[PROGRAM_POINT].uniform[UNIFORM_MVP], 1, GL_FALSE, MVPMatrix.m);
+    
+    // Update viewport
+    glViewport(0, 0, backingWidth, backingHeight);
 }
 
 // Releases resources when they are not longer needed.
@@ -400,21 +432,30 @@ static float scale = 0.0f;
 	NSUInteger			vertexCount = 0;
     NSUInteger          count;
     NSUInteger          i;
-	
+	 
+    start.x /= self.scaleFactor;
+	start.y /= self.scaleFactor;
+	end.x /= self.scaleFactor;
+	end.y /= self.scaleFactor;
+    
+    start.y = _imageSize.height - start.y;
+    end.y = _imageSize.height - end.y;
+    
 	[EAGLContext setCurrentContext:context];
 	glBindFramebuffer(GL_FRAMEBUFFER, viewFramebuffer);
 	
 	// Convert locations from Points to Pixels
 	CGFloat scale = self.contentScaleFactor;
-	start.x *= scale;
-	start.y *= scale;
-	end.x *= scale;
-	end.y *= scale;
+	start.x /= scale;
+	start.y /= scale;
+	end.x /= scale;
+	end.y /= scale;
 	
 	// Allocate vertex array buffer
 	if(vertexBuffer == NULL){
 		vertexBuffer = malloc(vertexMax * 2 * sizeof(GLfloat));
 	}
+    
 	// Add points to the buffer so there are drawing points every X pixels
 	count = MAX(ceilf(sqrtf((end.x - start.x) * (end.x - start.x) + (end.y - start.y) * (end.y - start.y)) / kBrushPixelStep), 1);
 	for(i = 0; i < count; ++i) {
@@ -430,7 +471,7 @@ static float scale = 0.0f;
     
 	// Load data to the Vertex Buffer Object
 	glBindBuffer(GL_ARRAY_BUFFER, vboId);
-	glBufferData(GL_ARRAY_BUFFER, vertexCount * 2 * sizeof(GLfloat), vertexBuffer, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, vertexCount * 2 * sizeof(GLfloat), vertexBuffer, GL_STATIC_DRAW);
 	
     glEnableVertexAttribArray(ATTRIB_VERTEX);
     glVertexAttribPointer(ATTRIB_VERTEX, 2, GL_FLOAT, GL_FALSE, 0, NULL);
@@ -462,50 +503,7 @@ static float scale = 0.0f;
 		[self performSelector:@selector(playback:) withObject:recordedPaths afterDelay:0.01];
 }
 
-#pragma mark - touches handling
-
-// Handles the start of a touch
-//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//	CGRect				bounds = [self bounds];
-//    UITouch*	touch = [[event touchesForView:self] anyObject];
-//	// Convert touch point from UIView referential to OpenGL one (upside-down flip)
-//	location = [touch locationInView:self];
-//	location.y = bounds.size.height - location.y;
-//    [self renderLineFromPoint:location toPoint:location];
-//    NSLog(@"touchesBegan");
-//}
-//
-//// Handles the continuation of a touch.
-//- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    
-//	CGRect				bounds = [self bounds];
-//	UITouch*			touch = [[event touchesForView:self] anyObject];
-//    
-//    previousLocation = location;
-//    location = [touch locationInView:self];
-//    location.y = bounds.size.height - location.y;
-//    
-//	// Render the stroke
-//	[self renderLineFromPoint:previousLocation toPoint:location];
-//    NSLog(@"touchesMoved");
-//}
-//
-//// Handles the end of a touch event when the touch is a tap.
-//- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-//{
-//    CGRect				bounds = [self bounds];
-//    UITouch*	touch = [[event touchesForView:self] anyObject];
-//
-//    previousLocation = location;
-//    location = [touch locationInView:self];
-//    location.y = bounds.size.height - location.y;
-//    [self renderLineFromPoint:previousLocation toPoint:location];
-//
-//	previousLocation = location = CGPointZero;
-//        NSLog(@"touchesEnded");
-//}
+#pragma mark - color setting
 
 - (void)setBrushColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue alpha:(CGFloat) alpha
 {
@@ -519,6 +517,27 @@ static float scale = 0.0f;
         glUseProgram(program[PROGRAM_POINT].id);
         glUniform4fv(program[PROGRAM_POINT].uniform[UNIFORM_VERTEX_COLOR], 1, brushColor);
     }
+}
+
+#pragma mark - zoom handling
+- (void) setScaleFactor:(float)scaleFactor {
+    if (scaleFactor >= 10) {
+        scaleFactor = 10;
+    }
+    _scaleFactor = scaleFactor;
+    
+    CGSize newSize = self.imageSize;
+    newSize.width *= scaleFactor;
+    newSize.height *= scaleFactor;
+    
+    CGPoint center = self.center;
+    
+    CGRect frame = self.frame;
+    frame.size = newSize;
+    
+    self.frame = frame;
+    self.center = center;
+    glViewport(0, 0, newSize.width, newSize.height);
 }
 
 @end

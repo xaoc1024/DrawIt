@@ -18,21 +18,22 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <view opaque="NO" contentMode="scaleToFill" id="KPV-3S-Fwb" userLabel="Instruments View">
-                                <rect key="frame" x="0.0" y="0.0" width="200" height="768"/>
+                                <rect key="frame" x="0.0" y="0.0" width="208" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="4" maxValue="100" id="GjQ-hI-70Y" userLabel="Brush Width Slider">
-                                        <rect key="frame" x="18" y="56" width="164" height="34"/>
+                                        <rect key="frame" x="22" y="56" width="164" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="brushWidthSliderAction:" destination="sIw-5Z-p3V" eventType="valueChanged" id="DDS-Cc-EXe"/>
                                         </connections>
                                     </slider>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Tec-sj-N8h">
-                                        <rect key="frame" x="69" y="105" width="63" height="41"/>
+                                        <rect key="frame" x="73" y="105" width="63" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <state key="normal" title="Erase">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -40,52 +41,81 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" id="0SG-JD-g0j" userLabel="Color Picker">
-                                        <rect key="frame" x="0.0" y="167" width="200" height="256"/>
+                                        <rect key="frame" x="4" y="167" width="200" height="256"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                     <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.25" maxValue="10" id="Hfj-ms-MPr" userLabel="Zoom Slider">
-                                        <rect key="frame" x="18" y="501" width="164" height="34"/>
+                                        <rect key="frame" x="22" y="501" width="164" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <connections>
                                             <action selector="zoomSliderAction:" destination="sIw-5Z-p3V" eventType="valueChanged" id="we5-5B-HgY"/>
                                         </connections>
                                     </slider>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000 %" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g8l-nB-5Nf">
-                                        <rect key="frame" x="65" y="534" width="65" height="21"/>
+                                        <rect key="frame" x="69" y="534" width="65" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zoom (%)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hN6-n3-UXM">
-                                        <rect key="frame" x="57" y="477" width="86" height="21"/>
+                                        <rect key="frame" x="61" y="477" width="86" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Q4r-SZ-l7v">
+                                        <rect key="frame" x="61" y="569" width="63" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Zoom In">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="zoomInButonAction:" destination="sIw-5Z-p3V" eventType="touchUpInside" id="yq9-cz-Yke"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kIW-m3-G1b">
+                                        <rect key="frame" x="56" y="599" width="73" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Zoom Out">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="zoomOutButonAction:" destination="sIw-5Z-p3V" eventType="touchUpInside" id="4a9-IC-nu3"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brush Size" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c3a-v9-El8">
+                                        <rect key="frame" x="58" y="20" width="92" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="0.69000000000000006" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.15234441097489126" green="0.1742458693002244" blue="0.23280423280423279" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.25" maximumZoomScale="10" bouncesZoom="NO" id="LaK-tW-81l" userLabel="Content Scroll View">
-                                <rect key="frame" x="200" y="0.0" width="824" height="768"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" id="0Yv-px-gm1" userLabel="Background View for Painting View">
+                                <rect key="frame" x="208" y="0.0" width="816" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view autoresizesSubviews="NO" contentMode="scaleToFill" id="stv-YO-7me" customClass="ANPaintingView">
-                                        <rect key="frame" x="0.0" y="0.0" width="4" height="4"/>
+                                        <rect key="frame" x="343" y="323" width="129" height="121"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.3050726829" green="0.97660495920000001" blue="0.149237851" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="GZs-6m-tUI" appends="YES" id="DCZ-RF-1Cl"/>
+                                            <outletCollection property="gestureRecognizers" destination="Ko7-HX-5Z4" appends="YES" id="dg6-7x-Cte"/>
+                                            <outletCollection property="gestureRecognizers" destination="Ko7-HX-5Z4" appends="YES" id="pWX-Wb-0AX"/>
                                         </connections>
                                     </view>
                                 </subviews>
-                                <connections>
-                                    <outlet property="delegate" destination="sIw-5Z-p3V" id="Kfb-8M-Lg6"/>
-                                </connections>
-                            </scrollView>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -97,7 +127,6 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <outlet property="colorPickerStub" destination="0SG-JD-g0j" id="CZx-dP-4ZW"/>
-                        <outlet property="contentScrollView" destination="LaK-tW-81l" id="TMw-JC-eSU"/>
                         <outlet property="instrumentsView" destination="KPV-3S-Fwb" id="ZnL-bI-fBs"/>
                         <outlet property="paintingView" destination="stv-YO-7me" id="97y-ls-CPC"/>
                         <outlet property="slider" destination="GjQ-hI-70Y" id="9Cl-7E-Jh1"/>
@@ -112,6 +141,16 @@
                         <action selector="longPressGestureAction:" destination="sIw-5Z-p3V" id="OmJ-HF-Ktg"/>
                     </connections>
                 </pongPressGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="2" id="1gk-7a-KNz">
+                    <connections>
+                        <action selector="panGestureAction:" destination="sIw-5Z-p3V" id="aTG-CU-UkO"/>
+                    </connections>
+                </panGestureRecognizer>
+                <pinchGestureRecognizer id="Ko7-HX-5Z4">
+                    <connections>
+                        <action selector="pinchGestureAction:" destination="sIw-5Z-p3V" id="ey2-5g-q4h"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="147" y="-184"/>
         </scene>

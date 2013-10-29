@@ -19,9 +19,12 @@
 @property(nonatomic, readwrite) CGPoint previousLocation;
 @property(nonatomic, assign) NSInteger brushWidth;
 @property (nonatomic, strong) UIColor * color;
-- (void)erase;
-- (void)increaseScale;
-- (void)decreaseScale;
-- (void)renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end;
 
+@property (nonatomic, assign) CGSize imageSize;
+@property (nonatomic, assign) float scaleFactor;
+
+- (void)erase;
+- (void)renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end;
+- (BOOL)resizeFromLayer:(CAEAGLLayer *)layer;
+- (void)testFunc:(NSInteger)val;
 @end

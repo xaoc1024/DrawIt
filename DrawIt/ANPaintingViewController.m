@@ -14,11 +14,6 @@
 
 //CONSTANTS:
 
-#define kBrightness             1.0
-#define kSaturation             0.45
-
-#define kPaletteHeight			30
-#define kPaletteSize			5
 #define kMinEraseInterval		0.5
 
 // Padding for margins
@@ -37,7 +32,6 @@
 @property (nonatomic, weak) IBOutlet UISlider * slider;
 @property (nonatomic, weak) IBOutlet UIView * colorPickerStub;
 @property (nonatomic, weak) IBOutlet UIView * instrumentsView;
-@property (nonatomic, weak) IBOutlet UIScrollView * contentScrollView;
 
 @property (nonatomic, strong) UIView * transparentView;
 
@@ -49,6 +43,8 @@
 @property (nonatomic, weak) IBOutlet UILabel * zoomLabel;
 
 @property (nonatomic, assign) float zoomFactor;
+
+- (IBAction)zoomInButonAction:(id)sender;
 
 - (IBAction)brushWidthSliderAction:(UISlider *)sender;
 - (IBAction)zoomSliderAction:(UISlider *)sender;
@@ -72,11 +68,6 @@
     colorPickerView.delegate = self;
     self.paintingView.color = colorPickerView.color;
     
-    self.contentScrollView.panGestureRecognizer.maximumNumberOfTouches = 2;
-    self.contentScrollView.panGestureRecognizer.minimumNumberOfTouches = 2;
-    
-    [self.contentScrollView.pinchGestureRecognizer addTarget:self action:@selector(contentScrollViewPinchGestureAction:)];
-    
     self.transparentView = [[UIView alloc] initWithFrame:self.view.frame];
     self.transparentView.backgroundColor = [UIColor blackColor];
     self.transparentView.alpha = 0.5f;
@@ -92,16 +83,20 @@
     self.createImageDialog.center = center;
     [self.view addSubview:self.createImageDialog];
     self.createImageDialog.delegate = self;
+    self.zoomFactor = 1;
 }
+
 
 - (void) setZoomFactor:(float)zoomFactor {
     _zoomFactor = zoomFactor;
-    NSInteger intVal = (NSInteger)(_zoomFactor * 100);
-    self.zoomLabel.text = [NSString stringWithFormat:@"%d %%", intVal];
-    self.zoomSlider.value = zoomFactor;
-    
+    [self updateUIForScale:zoomFactor];
 }
 
+- (void) updateUIForScale:(float)scaleFactor {
+    NSInteger intVal = (NSInteger)(scaleFactor * 100);
+    self.zoomLabel.text = [NSString stringWithFormat:@"%d %%", intVal];
+    self.zoomSlider.value = scaleFactor;
+}
 #pragma mark IBActions
 - (IBAction)eraseButtonAction:(UIButton *)button
 {
@@ -118,42 +113,33 @@
 
 - (IBAction)zoomSliderAction:(UISlider *)sender {
     float val = sender.value;
-    [self.contentScrollView setZoomScale:val animated:NO];
+//    [self.contentScrollView setZoomScale:val animated:NO];
     [self setZoomFactor:val];
-    [self contentScrollViewPinchGestureAction:Nil];
+//    [self contentScrollViewPinchGestureAction:nil];
+    self.paintingView.scaleFactor = sender.value;
 }
 
 #pragma mark - ANColorPickerDelegate
 - (void)colorPickerView:(ANColorPickerView *)colorPickerView didPickColor:(UIColor *)color {
     self.paintingView.color = color;
 }
-#pragma mark - gesture actions
-- (void) contentScrollViewPinchGestureAction:(UIPinchGestureRecognizer *)gesture {
-    CGRect viewFrame = self.paintingView.frame;
-    if ((viewFrame.size.height < self.contentScrollView.frame.size.height) &&
-        (viewFrame.size.width < self.contentScrollView.frame.size.width)) {
-        self.paintingView.center = [self.contentScrollView convertPoint:self.contentScrollView.center
-                                                               fromView:self.view];
-        self.contentScrollView.contentSize = self.contentScrollView.frame.size;
-    } else {
-        self.contentScrollView.contentSize = self.paintingView.frame.size;
-    }
-}
+
 
 - (IBAction)longPressGestureAction:(UILongPressGestureRecognizer *)sender {
     UIGestureRecognizerState state = sender.state;
-    CGRect bound = self.paintingView.bounds;
+    
     CGPoint location;
     
     switch (state) {
         case  UIGestureRecognizerStateBegan:
             location = [sender locationInView:self.paintingView];
-            location.y = bound.size.height - location.y;
             self.prevLocation = location;
+            break;
+        case  UIGestureRecognizerStateChanged:
+            location = [sender locationInView:self.paintingView];
             break;
         default:
             location = [sender locationInView:self.paintingView];
-            location.y = bound.size.height - location.y;
             break;
     }
    
@@ -161,27 +147,75 @@
     self.prevLocation = location;
 }
 
-#pragma mark - UIScrollViewDelegate
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
-    return self.paintingView;
-}
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView {
-    [self setZoomFactor:scrollView.zoomScale];
-}
 #pragma mark - ANCreateImageDialogDelegate
 - (void) createImageDialog:(ANCreateImageDialogView *)dialog
    didCreateImageWithWidth:(NSInteger)width
                  andHeigth:(NSInteger)heigth
 {
+    
     [self.transparentView removeFromSuperview];
     [self.createImageDialog removeFromSuperview];
     CGRect frame = self.paintingView.frame;
     frame.size.width = width;
     frame.size.height = heigth;
     self.paintingView.frame = frame;
-    self.paintingView.center = [self.contentScrollView convertPoint:self.contentScrollView.center
-                                                           fromView:self.view];
-    self.contentScrollView.contentSize = self.contentScrollView.frame.size;
+    self.paintingView.center = [self.view convertPoint:self.paintingView.superview.center
+                                                      toView:self.paintingView.superview];
+    [self.paintingView resizeFromLayer:(CAEAGLLayer *)_paintingView.layer];
+    self.paintingView.imageSize = frame.size;
+}
+
+
+- (IBAction)zoomInButonAction:(UIButton *)sender {
+    CGRect frame = self.paintingView.frame;
+    frame.size.height += 40;
+    frame.size.width += 40;
+    self.paintingView.frame = frame;
+}
+
+- (IBAction)zoomOutButonAction:(UIButton *)sender {
+
+}
+
+- (IBAction)panGestureAction:(UIPanGestureRecognizer *)sender {
+    
+}
+
+- (IBAction)pinchGestureAction:(UIPinchGestureRecognizer *)sender {
+    UIGestureRecognizerState state = sender.state;
+    float scale = sender.scale;
+    NSLog(@"SCALE - %f", scale);
+    static float curretnScale;
+    switch (state) {
+        case UIGestureRecognizerStateBegan:
+            curretnScale = self.zoomFactor;
+            scale = curretnScale * scale;
+            break;
+            
+        case UIGestureRecognizerStateChanged:
+            scale = curretnScale * scale;
+            break;
+
+        default:
+            scale = curretnScale * scale;
+            if (scale >= 10) {
+                scale = 10;
+            }
+            self.zoomFactor = scale;
+            break;
+    }
+//    if (scale > 1){
+//        scale = curretnScale + scale;
+//    } else {
+//        scale = curretnScale - 1.0f / scale;
+//    }
+    if (scale >= 10) {
+        scale = 10;
+    }
+    self.paintingView.scaleFactor = scale;
+
+    [self updateUIForScale:scale];
+//    self.zoomFactor = scale;
 }
 
 @end
