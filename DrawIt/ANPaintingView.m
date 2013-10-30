@@ -530,13 +530,10 @@ typedef struct {
     newSize.width *= scaleFactor;
     newSize.height *= scaleFactor;
     
-    CGPoint center = self.center;
-    
     CGRect frame = self.frame;
     frame.size = newSize;
-    
     self.frame = frame;
-    self.center = center;
+    
     glViewport(0, 0, newSize.width, newSize.height);
 }
 

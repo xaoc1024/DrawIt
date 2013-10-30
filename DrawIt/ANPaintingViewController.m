@@ -11,6 +11,7 @@
 #import "ANPaintingView.h"
 #import "ANColorPickerView.h"
 #import "ANCreateImageDialogView.h"
+#import "ANVectorGeometry.h"
 
 //CONSTANTS:
 
@@ -84,8 +85,18 @@
     [self.view addSubview:self.createImageDialog];
     self.createImageDialog.delegate = self;
     self.zoomFactor = 1;
+    
+    // TODO: test for Serhiy
+    CGPoint * pointsArray = pointsArrayForCicle(CGPointMake(10.0f, 10.0f), 100.0f);
 }
-
+- (void) locatePaintingView {
+    CGSize newSize = self.paintingView.frame.size;
+    if (newSize.width <= self.paintingView.superview.frame.size.width &&
+        newSize.height <= self.paintingView.superview.frame.size.width){
+        self.paintingView.center = [self.view convertPoint:self.paintingView.superview.center
+                                                    toView:self.paintingView.superview];
+    }
+}
 
 - (void) setZoomFactor:(float)zoomFactor {
     _zoomFactor = zoomFactor;
@@ -173,10 +184,6 @@
     self.paintingView.frame = frame;
 }
 
-- (IBAction)zoomOutButonAction:(UIButton *)sender {
-
-}
-
 - (IBAction)panGestureAction:(UIPanGestureRecognizer *)sender {
     
 }
@@ -184,8 +191,8 @@
 - (IBAction)pinchGestureAction:(UIPinchGestureRecognizer *)sender {
     UIGestureRecognizerState state = sender.state;
     float scale = sender.scale;
-    NSLog(@"SCALE - %f", scale);
     static float curretnScale;
+    
     switch (state) {
         case UIGestureRecognizerStateBegan:
             curretnScale = self.zoomFactor;
@@ -204,18 +211,12 @@
             self.zoomFactor = scale;
             break;
     }
-//    if (scale > 1){
-//        scale = curretnScale + scale;
-//    } else {
-//        scale = curretnScale - 1.0f / scale;
-//    }
     if (scale >= 10) {
         scale = 10;
     }
     self.paintingView.scaleFactor = scale;
-
+    [self locatePaintingView];
     [self updateUIForScale:scale];
-//    self.zoomFactor = scale;
 }
 
 @end
