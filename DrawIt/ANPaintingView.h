@@ -24,8 +24,14 @@
 @property (nonatomic, assign) CGSize imageSize;
 @property (nonatomic, assign) float scaleFactor;
 
+@property (nonatomic, assign) NSUInteger currentLayer;
+@property (nonatomic, assign) CGPoint *circlePoints;
+@property (nonatomic, assign) NSInteger circlePointsNumber;
+
 - (void)erase;
+- (void)eraseForLayers;
 - (void)renderLineFromPoint:(CGPoint)start toPoint:(CGPoint)end;
 - (BOOL)resizeFromLayer:(CAEAGLLayer *)layer;
-- (void)testFunc:(NSInteger)val;
+- (void) addLayer;
+- (void)drawCircleWithRadius:(CGFloat)radius;
 @end

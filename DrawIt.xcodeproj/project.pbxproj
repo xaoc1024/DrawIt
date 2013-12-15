@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C0952EB182E88E700B8A38C /* ANLayerTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0952EA182E88E700B8A38C /* ANLayerTableView.m */; };
+		5C0952EE182E891700B8A38C /* ANLayerTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0952ED182E891700B8A38C /* ANLayerTableView.xib */; };
+		5C0952F1182E8A3400B8A38C /* ANLayerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0952F0182E8A3400B8A38C /* ANLayerTableViewCell.m */; };
+		5C0952F4182E8A4E00B8A38C /* ANLayerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0952F3182E8A4E00B8A38C /* ANLayerTableViewCell.xib */; };
+		5C0952F7182E901100B8A38C /* ANLayerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0952F6182E901100B8A38C /* ANLayerData.m */; };
+		5C0952FB182E913500B8A38C /* UIView+NIB.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0952FA182E913500B8A38C /* UIView+NIB.m */; };
 		5C0AC2801817FB39001DAA5C /* ANColorPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C0AC27F1817FB39001DAA5C /* ANColorPickerView.m */; };
 		5C0AC2831817FB5B001DAA5C /* ANColorPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0AC2821817FB5B001DAA5C /* ANColorPickerView.xib */; };
 		5C3DA2B51819114F0041C4BA /* ANCreateImageDialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3DA2B41819114F0041C4BA /* ANCreateImageDialogView.m */; };
@@ -14,6 +20,10 @@
 		5CB26C5A1819232F005C42D0 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5CB26C581819232F005C42D0 /* background.jpg */; };
 		5CB26C5B1819232F005C42D0 /* background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5CB26C591819232F005C42D0 /* background@2x.jpg */; };
 		5CB4ADE01816CE8E0034FE14 /* Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CB4ADDA1816CE8E0034FE14 /* Particle.png */; };
+		5CC91CAF185E11E600E4D4F5 /* Circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC91CAE185E11E600E4D4F5 /* Circle@2x.png */; };
+		5CC91CB1185E136900E4D4F5 /* Circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC91CB0185E136900E4D4F5 /* Circle.png */; };
+		5CC91CB4185E161300E4D4F5 /* okButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC91CB2185E161300E4D4F5 /* okButton.png */; };
+		5CC91CB5185E161300E4D4F5 /* okButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CC91CB3185E161300E4D4F5 /* okButton@2x.png */; };
 		5CF8C8D818210560000833D6 /* ANVectorGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CF8C8D718210560000833D6 /* ANVectorGeometry.m */; };
 		9596A47917F08C510092BE04 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9596A47817F08C510092BE04 /* UIKit.framework */; };
 		9596A47B17F08C510092BE04 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9596A47A17F08C510092BE04 /* Foundation.framework */; };
@@ -39,6 +49,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5C0952E9182E88E700B8A38C /* ANLayerTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANLayerTableView.h; sourceTree = "<group>"; };
+		5C0952EA182E88E700B8A38C /* ANLayerTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANLayerTableView.m; sourceTree = "<group>"; };
+		5C0952ED182E891700B8A38C /* ANLayerTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ANLayerTableView.xib; sourceTree = "<group>"; };
+		5C0952EF182E8A3400B8A38C /* ANLayerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANLayerTableViewCell.h; sourceTree = "<group>"; };
+		5C0952F0182E8A3400B8A38C /* ANLayerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANLayerTableViewCell.m; sourceTree = "<group>"; };
+		5C0952F3182E8A4E00B8A38C /* ANLayerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ANLayerTableViewCell.xib; sourceTree = "<group>"; };
+		5C0952F5182E901100B8A38C /* ANLayerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANLayerData.h; sourceTree = "<group>"; };
+		5C0952F6182E901100B8A38C /* ANLayerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANLayerData.m; sourceTree = "<group>"; };
+		5C0952F9182E913500B8A38C /* UIView+NIB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+NIB.h"; sourceTree = "<group>"; };
+		5C0952FA182E913500B8A38C /* UIView+NIB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+NIB.m"; sourceTree = "<group>"; };
 		5C0AC27E1817FB39001DAA5C /* ANColorPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANColorPickerView.h; sourceTree = "<group>"; };
 		5C0AC27F1817FB39001DAA5C /* ANColorPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANColorPickerView.m; sourceTree = "<group>"; };
 		5C0AC2821817FB5B001DAA5C /* ANColorPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ANColorPickerView.xib; sourceTree = "<group>"; };
@@ -50,6 +70,10 @@
 		5CB26C581819232F005C42D0 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = background.jpg; path = Resources/background.jpg; sourceTree = "<group>"; };
 		5CB26C591819232F005C42D0 /* background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "background@2x.jpg"; path = "Resources/background@2x.jpg"; sourceTree = "<group>"; };
 		5CB4ADDA1816CE8E0034FE14 /* Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Particle.png; path = Resources/Particle.png; sourceTree = "<group>"; };
+		5CC91CAE185E11E600E4D4F5 /* Circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Circle@2x.png"; path = "Resources/Circle@2x.png"; sourceTree = "<group>"; };
+		5CC91CB0185E136900E4D4F5 /* Circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Circle.png; path = Resources/Circle.png; sourceTree = "<group>"; };
+		5CC91CB2185E161300E4D4F5 /* okButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = okButton.png; path = Resources/okButton.png; sourceTree = "<group>"; };
+		5CC91CB3185E161300E4D4F5 /* okButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "okButton@2x.png"; path = "Resources/okButton@2x.png"; sourceTree = "<group>"; };
 		5CF8C8D618210560000833D6 /* ANVectorGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ANVectorGeometry.h; sourceTree = "<group>"; };
 		5CF8C8D718210560000833D6 /* ANVectorGeometry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ANVectorGeometry.m; sourceTree = "<group>"; };
 		9596A47517F08C510092BE04 /* DrawIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,6 +123,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C0952EC182E88F200B8A38C /* Layer List View */ = {
+			isa = PBXGroup;
+			children = (
+				5C0952E9182E88E700B8A38C /* ANLayerTableView.h */,
+				5C0952EA182E88E700B8A38C /* ANLayerTableView.m */,
+				5C0952ED182E891700B8A38C /* ANLayerTableView.xib */,
+				5C0952F2182E8A3800B8A38C /* Layer Table View Cell */,
+				5C0952F8182E906000B8A38C /* LayerData */,
+			);
+			name = "Layer List View";
+			sourceTree = "<group>";
+		};
+		5C0952F2182E8A3800B8A38C /* Layer Table View Cell */ = {
+			isa = PBXGroup;
+			children = (
+				5C0952EF182E8A3400B8A38C /* ANLayerTableViewCell.h */,
+				5C0952F0182E8A3400B8A38C /* ANLayerTableViewCell.m */,
+				5C0952F3182E8A4E00B8A38C /* ANLayerTableViewCell.xib */,
+			);
+			name = "Layer Table View Cell";
+			sourceTree = "<group>";
+		};
+		5C0952F8182E906000B8A38C /* LayerData */ = {
+			isa = PBXGroup;
+			children = (
+				5C0952F5182E901100B8A38C /* ANLayerData.h */,
+				5C0952F6182E901100B8A38C /* ANLayerData.m */,
+			);
+			name = LayerData;
+			sourceTree = "<group>";
+		};
 		5C0AC2811817FB3E001DAA5C /* Color picker view */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +179,10 @@
 		5CB4ADD71816CE3B0034FE14 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5CC91CB2185E161300E4D4F5 /* okButton.png */,
+				5CC91CB3185E161300E4D4F5 /* okButton@2x.png */,
+				5CC91CAE185E11E600E4D4F5 /* Circle@2x.png */,
+				5CC91CB0185E136900E4D4F5 /* Circle.png */,
 				5CB26C581819232F005C42D0 /* background.jpg */,
 				5CB26C591819232F005C42D0 /* background@2x.jpg */,
 				5CB4ADDA1816CE8E0034FE14 /* Particle.png */,
@@ -205,6 +264,7 @@
 				9596A49B17F08D490092BE04 /* Controller */,
 				5C0AC2811817FB3E001DAA5C /* Color picker view */,
 				5C3DA2B6181911560041C4BA /* Create Image Dialog View */,
+				5C0952EC182E88F200B8A38C /* Layer List View */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -222,6 +282,8 @@
 		9596A4A517F0907C0092BE04 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				5C0952F9182E913500B8A38C /* UIView+NIB.h */,
+				5C0952FA182E913500B8A38C /* UIView+NIB.m */,
 				9596A4A617F0907C0092BE04 /* debug.h */,
 				9596A4A717F0907C0092BE04 /* fileUtil.h */,
 				9596A4A817F0907C0092BE04 /* fileUtil.m */,
@@ -294,18 +356,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CC91CAF185E11E600E4D4F5 /* Circle@2x.png in Resources */,
 				9596A4B517F093C50092BE04 /* point.fsh in Resources */,
 				9596A4B617F093C50092BE04 /* point.vsh in Resources */,
 				5C3DA2B8181911AE0041C4BA /* ANCreateImageDialogView.xib in Resources */,
+				5C0952EE182E891700B8A38C /* ANLayerTableView.xib in Resources */,
 				9596A48317F08C510092BE04 /* InfoPlist.strings in Resources */,
+				5CC91CB4185E161300E4D4F5 /* okButton.png in Resources */,
 				5CB4ADE01816CE8E0034FE14 /* Particle.png in Resources */,
 				9596A48B17F08C510092BE04 /* Default.png in Resources */,
 				9596A48D17F08C510092BE04 /* Default@2x.png in Resources */,
+				5C0952F4182E8A4E00B8A38C /* ANLayerTableViewCell.xib in Resources */,
 				9596A48F17F08C510092BE04 /* Default-568h@2x.png in Resources */,
 				9596A49617F08C6C0092BE04 /* MainStoryboard.storyboard in Resources */,
 				5CB26C5A1819232F005C42D0 /* background.jpg in Resources */,
+				5CC91CB5185E161300E4D4F5 /* okButton@2x.png in Resources */,
 				5CB26C5B1819232F005C42D0 /* background@2x.jpg in Resources */,
 				5C0AC2831817FB5B001DAA5C /* ANColorPickerView.xib in Resources */,
+				5CC91CB1185E136900E4D4F5 /* Circle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,17 +384,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C0952F7182E901100B8A38C /* ANLayerData.m in Sources */,
 				9596A48517F08C510092BE04 /* main.m in Sources */,
 				5C0AC2801817FB39001DAA5C /* ANColorPickerView.m in Sources */,
 				9596A48917F08C510092BE04 /* ANAppDelegate.m in Sources */,
+				5C0952EB182E88E700B8A38C /* ANLayerTableView.m in Sources */,
 				5CF8C8D818210560000833D6 /* ANVectorGeometry.m in Sources */,
 				9596A4A417F08FE90092BE04 /* ANPaintingView.m in Sources */,
 				9596A4AB17F0907C0092BE04 /* fileUtil.m in Sources */,
 				9596A4AC17F0907C0092BE04 /* shaderUtil.c in Sources */,
 				9596A4B017F090CD0092BE04 /* point.fsh in Sources */,
+				5C0952F1182E8A3400B8A38C /* ANLayerTableViewCell.m in Sources */,
 				9596A4B117F090CD0092BE04 /* point.vsh in Sources */,
 				9596A4B417F0911B0092BE04 /* ANPaintingViewController.m in Sources */,
 				5C3DA2B51819114F0041C4BA /* ANCreateImageDialogView.m in Sources */,
+				5C0952FB182E913500B8A38C /* UIView+NIB.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

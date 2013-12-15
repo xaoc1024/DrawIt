@@ -45,6 +45,16 @@
 
 @property (nonatomic, assign) float zoomFactor;
 
+@property (nonatomic, strong) ANPaintingView * circlePaintingView;
+
+@property (nonatomic, strong) NSMutableArray *layersArray;
+@property (weak, nonatomic) IBOutlet UIButton *circleButton;
+@property (weak, nonatomic) IBOutlet UITextField *circleRadiusTextField;
+@property (weak, nonatomic) IBOutlet UIButton *okCircleButton;
+@property (weak, nonatomic) IBOutlet UIView *paintingBackground;
+
+@property (nonatomic, assign) BOOL isDrawingCircle;
+
 - (IBAction)zoomInButonAction:(id)sender;
 
 - (IBAction)brushWidthSliderAction:(UISlider *)sender;
@@ -58,6 +68,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.layersArray = [NSMutableArray arrayWithObject:self.paintingView];
+    
 	// Defer to the OpenGL view to set the brush color
     [self.paintingView setBrushWidth: (int)self.slider.value];
     ANColorPickerView * colorPickerView = [[[UINib nibWithNibName:@"ANColorPickerView" bundle:[NSBundle mainBundle]]
@@ -87,8 +99,9 @@
     self.zoomFactor = 1;
     
     // TODO: test for Serhiy
-    CGPoint * pointsArray = pointsArrayForCicle(CGPointMake(10.0f, 10.0f), 100.0f);
+//    CGPoint * pointsArray = pointsArrayForCicle(CGPointMake(10.0f, 10.0f, 100.0f);
 }
+
 - (void) locatePaintingView {
     CGSize newSize = self.paintingView.frame.size;
     if (newSize.width <= self.paintingView.superview.frame.size.width &&
@@ -109,12 +122,17 @@
     self.zoomSlider.value = scaleFactor;
 }
 #pragma mark IBActions
+
 - (IBAction)eraseButtonAction:(UIButton *)button
 {
 	if(CFAbsoluteTimeGetCurrent() > lastTime + kMinEraseInterval) {
 		[self.paintingView erase];
 		lastTime = CFAbsoluteTimeGetCurrent();
 	}
+}
+
+- (IBAction)layerTableButtonAction:(UIButton *)sender {
+    
 }
 
 - (IBAction)brushWidthSliderAction:(id)sender {
@@ -124,15 +142,54 @@
 
 - (IBAction)zoomSliderAction:(UISlider *)sender {
     float val = sender.value;
-//    [self.contentScrollView setZoomScale:val animated:NO];
     [self setZoomFactor:val];
-//    [self contentScrollViewPinchGestureAction:nil];
     self.paintingView.scaleFactor = sender.value;
+}
+
+- (IBAction)newLayerButtonAction:(UIButton *)sender {
+    ANPaintingView * newPaintingView = [[ANPaintingView alloc] initWithFrame:CGRectMake(0, 0,
+                                                                                        self.paintingView.imageSize.width,
+                                                                                        self.paintingView.imageSize.height)];
+    newPaintingView.backgroundColor = [UIColor clearColor];
+    [newPaintingView erase];
+    newPaintingView.hidden = YES;
+    [self.paintingBackground addSubview:newPaintingView];
+    self.circlePaintingView = newPaintingView;
+    newPaintingView.imageSize = newPaintingView.frame.size;
+    self.circlePaintingView.brushWidth = 10;
+    self.circlePaintingView.color = [UIColor grayColor];
+
+}
+
+- (IBAction)drawCircleMask:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    self.isDrawingCircle = sender.selected;
+
+    self.circleRadiusTextField.enabled = YES;
+    self.circleRadiusTextField.hidden = NO;
+    self.okCircleButton.hidden = NO;
+    self.okCircleButton.enabled = YES;
+    self.circlePaintingView.brushWidth = 5;
+    self.circlePaintingView.color = [UIColor grayColor];
+}
+
+- (IBAction)okButtonForCircleAction:(UIButton *)sender {
+    CGPoint *array = self.circlePaintingView.circlePoints;
+    NSInteger pointsNumber = self.circlePaintingView.circlePointsNumber;
+    for (int i = 1; i < pointsNumber; i++){
+        [self.paintingView renderLineFromPoint:array[i - 1] toPoint:array[i]];
+    }
+    [self.paintingView renderLineFromPoint:array[pointsNumber - 1] toPoint:array[0]];
 }
 
 #pragma mark - ANColorPickerDelegate
 - (void)colorPickerView:(ANColorPickerView *)colorPickerView didPickColor:(UIColor *)color {
     self.paintingView.color = color;
+    if (self.circlePaintingView){
+        self.circlePaintingView.brushWidth = 10;
+        self.circlePaintingView.color = color;
+    }
+    [self.circlePaintingView renderLineFromPoint:CGPointMake(0, 0) toPoint:CGPointMake(100, 100)];
 }
 
 
@@ -143,18 +200,35 @@
     
     switch (state) {
         case  UIGestureRecognizerStateBegan:
-            location = [sender locationInView:self.paintingView];
+            if (self.isDrawingCircle){
+                location = [sender locationInView:self.paintingBackground];
+                [self.circlePaintingView drawCircleWithRadius:[self.circleRadiusTextField.text integerValue]];
+            } else {
+                location = [sender locationInView:self.paintingView];
+            }
             self.prevLocation = location;
             break;
         case  UIGestureRecognizerStateChanged:
-            location = [sender locationInView:self.paintingView];
+            if (self.isDrawingCircle){
+             location = [sender locationInView:self.paintingBackground];
+            } else {
+                location = [sender locationInView:self.paintingView];
+            }
             break;
         default:
-            location = [sender locationInView:self.paintingView];
+            if (self.isDrawingCircle){
+                location = [sender locationInView:self.paintingBackground];
+            } else {
+                location = [sender locationInView:self.paintingView];
+            };
             break;
     }
-   
-    [self.paintingView renderLineFromPoint:self.prevLocation toPoint:location];
+    
+    if (!self.isDrawingCircle){
+        [self.paintingView renderLineFromPoint:self.prevLocation toPoint:location];
+    } else {
+        self.circlePaintingView.center = location;
+    }
     self.prevLocation = location;
 }
 

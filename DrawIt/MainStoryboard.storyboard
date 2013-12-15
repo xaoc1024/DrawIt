@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="sIw-5Z-p3V">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Painting View Controller-->
@@ -73,6 +73,55 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="yFi-rI-Yfl">
+                                        <rect key="frame" x="65" y="623" width="79" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="New Layer">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="newLayerButtonAction:" destination="sIw-5Z-p3V" eventType="touchUpInside" id="luj-5B-qc4"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UMk-dp-n3J">
+                                        <rect key="frame" x="79" y="738" width="51" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Layers">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="layerTableButtonAction:" destination="sIw-5Z-p3V" eventType="touchUpInside" id="c83-Wx-lzz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="DyC-wQ-yZi">
+                                        <rect key="frame" x="20" y="674" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" image="Circle.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="drawCircleMask:" destination="sIw-5Z-p3V" eventType="touchUpInside" id="3VG-8C-VBH"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bCj-HH-Mkc">
+                                        <rect key="frame" x="117" y="674" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" image="okButton.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="drawCircleMask:" destination="sIw-5Z-p3V" eventType="touchUpInside" id="XNI-FK-CYE"/>
+                                            <action selector="okButtonForCircleAction:" destination="sIw-5Z-p3V" eventType="touchUpInside" id="4Rk-F2-08T"/>
+                                        </connections>
+                                    </button>
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="15" id="hMT-y2-2d7">
+                                        <rect key="frame" x="61" y="674" width="39" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="0.15234441097489126" green="0.1742458693002244" blue="0.23280423280423279" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -80,8 +129,8 @@
                                 <rect key="frame" x="208" y="0.0" width="816" height="768"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view autoresizesSubviews="NO" contentMode="scaleToFill" id="stv-YO-7me" customClass="ANPaintingView">
-                                        <rect key="frame" x="343" y="323" width="129" height="121"/>
+                                    <view autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" id="stv-YO-7me" customClass="ANPaintingView">
+                                        <rect key="frame" x="343" y="323" width="66" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.3050726829" green="0.97660495920000001" blue="0.149237851" alpha="1" colorSpace="calibratedRGB"/>
                                         <gestureRecognizers/>
@@ -104,8 +153,12 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="circleButton" destination="DyC-wQ-yZi" id="piR-3m-q4k"/>
+                        <outlet property="circleRadiusTextField" destination="hMT-y2-2d7" id="zdv-YL-SyE"/>
                         <outlet property="colorPickerStub" destination="0SG-JD-g0j" id="CZx-dP-4ZW"/>
                         <outlet property="instrumentsView" destination="KPV-3S-Fwb" id="ZnL-bI-fBs"/>
+                        <outlet property="okCircleButton" destination="bCj-HH-Mkc" id="0jg-bK-WWb"/>
+                        <outlet property="paintingBackground" destination="0Yv-px-gm1" id="gYc-Ql-Khy"/>
                         <outlet property="paintingView" destination="stv-YO-7me" id="97y-ls-CPC"/>
                         <outlet property="slider" destination="GjQ-hI-70Y" id="9Cl-7E-Jh1"/>
                         <outlet property="view" destination="XbN-6U-pKc" id="lfN-05-tFa"/>
@@ -134,7 +187,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Circle.png" width="30" height="30"/>
         <image name="background.jpg" width="1024" height="768"/>
+        <image name="okButton.png" width="30" height="30"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
