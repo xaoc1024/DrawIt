@@ -147,9 +147,10 @@
 }
 
 - (IBAction)newLayerButtonAction:(UIButton *)sender {
+    NSInteger size = [self.circleRadiusTextField.text integerValue];
     ANPaintingView * newPaintingView = [[ANPaintingView alloc] initWithFrame:CGRectMake(0, 0,
-                                                                                        self.paintingView.imageSize.width,
-                                                                                        self.paintingView.imageSize.height)];
+                                                                                        size,
+                                                                                        size)];
     newPaintingView.backgroundColor = [UIColor clearColor];
     [newPaintingView erase];
     newPaintingView.hidden = YES;
@@ -160,11 +161,29 @@
     self.circlePaintingView.color = [UIColor grayColor];
 
 }
+-(ANPaintingView *)circlePaintingView {
+    NSInteger size = [self.circleRadiusTextField.text integerValue];
+    ANPaintingView * newPaintingView = [[ANPaintingView alloc] initWithFrame:CGRectMake(0, 0,
+                                                                                        size,
+                                                                                        size)];
+    newPaintingView.backgroundColor = [UIColor clearColor];
+    [newPaintingView erase];
+    newPaintingView.hidden = YES;
+    [self.paintingBackground addSubview:newPaintingView];
+    self.circlePaintingView = newPaintingView;
+    newPaintingView.imageSize = newPaintingView.frame.size;
+    
+    self.circlePaintingView.brushWidth = 10;
+    self.circlePaintingView.color = [UIColor grayColor];
+}
 
 - (IBAction)drawCircleMask:(UIButton *)sender {
     sender.selected = !sender.selected;
     self.isDrawingCircle = sender.selected;
 
+    
+    
+    
     self.circleRadiusTextField.enabled = YES;
     self.circleRadiusTextField.hidden = NO;
     self.okCircleButton.hidden = NO;
