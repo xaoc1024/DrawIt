@@ -34,4 +34,5 @@
 - (BOOL)resizeFromLayer:(CAEAGLLayer *)layer;
 - (void) addLayer;
 - (void)drawCircleWithRadius:(CGFloat)radius;
+- (void)clear;
 @end

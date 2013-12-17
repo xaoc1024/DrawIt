@@ -547,10 +547,20 @@ typedef struct {
 	// Clear the buffer
     
 	glBindFramebuffer(GL_FRAMEBUFFER, self.currentViewFrameBuffer);
-    if ([self.contextsArray indexOfObject:self.currentContex] == 1){
-        glClearColor(0.0, 0.0, 0.0, 1.0);
-    } else
-        glClearColor(1.0, 1.0, 1.0, 1.0);
+    glClearColor(1.0, 1.0, 1.0, 1.0);
+	glClear(GL_COLOR_BUFFER_BIT);
+	
+	// Display the buffer
+	glBindRenderbuffer(GL_RENDERBUFFER, self.currentViewRenderBuffer);
+	[self.currentContex presentRenderbuffer:GL_RENDERBUFFER];
+}
+- (void)clear {
+    [EAGLContext setCurrentContext:self.currentContex];
+	
+	// Clear the buffer
+    
+	glBindFramebuffer(GL_FRAMEBUFFER, self.currentViewFrameBuffer);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 	
 	// Display the buffer
@@ -713,7 +723,8 @@ typedef struct {
 
 - (void)drawCircleWithRadius:(CGFloat)radius {
     NSInteger pointsNumber;
-    CGPoint *array = pointsArrayForCicle(self.center, radius, &pointsNumber);
+    CGPoint center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
+    CGPoint *array = pointsArrayForCicle(center, radius, &pointsNumber);
     self.circlePointsNumber = pointsNumber;
     for (int i = 1; i < pointsNumber; i++){
         [self renderLineFromPoint:array[i - 1] toPoint:array[i]];

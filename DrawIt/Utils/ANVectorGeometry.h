@@ -8,4 +8,4 @@
 
 #import <Foundation/Foundation.h>
 
-CGPoint * pointsArrayForCicle(CGPoint topLeft, float radius, NSInteger *pointsNumber);
+CGPoint * pointsArrayForCicle(CGPoint center, float radius, NSInteger *pointsNumber);

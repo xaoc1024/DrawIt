@@ -121,6 +121,37 @@
     self.zoomLabel.text = [NSString stringWithFormat:@"%d %%", intVal];
     self.zoomSlider.value = scaleFactor;
 }
+
+- (void)setIsDrawingCircle:(BOOL)isDrawingCircle {
+    _isDrawingCircle = isDrawingCircle;
+    if (isDrawingCircle){
+        [self createCircleView];
+    } else {
+        [self.circlePaintingView removeFromSuperview];
+        self.circlePaintingView = nil;
+    }
+}
+
+- (void) createCircleView {
+    NSInteger size = [self.circleRadiusTextField.text integerValue];
+    if (size == 0) size = 300;
+    ANPaintingView * newPaintingView = [[ANPaintingView alloc] initWithFrame:CGRectMake(10, 10,
+                                                                                        size,
+                                                                                        size)];
+    [self.circlePaintingView resizeFromLayer:(CAEAGLLayer *)self.circlePaintingView.layer];
+    
+    newPaintingView.imageSize = newPaintingView.frame.size;
+    [self.paintingBackground addSubview:newPaintingView];
+    
+    
+    self.circlePaintingView = newPaintingView;
+    self.circlePaintingView.color = [UIColor grayColor];
+    self.circlePaintingView.backgroundColor = [UIColor blackColor];
+    [newPaintingView clear];
+    newPaintingView.hidden = NO;
+    [self.circlePaintingView layoutIfNeeded];
+}
+
 #pragma mark IBActions
 
 - (IBAction)eraseButtonAction:(UIButton *)button
@@ -147,49 +178,33 @@
 }
 
 - (IBAction)newLayerButtonAction:(UIButton *)sender {
-    NSInteger size = [self.circleRadiusTextField.text integerValue];
-    ANPaintingView * newPaintingView = [[ANPaintingView alloc] initWithFrame:CGRectMake(0, 0,
-                                                                                        size,
-                                                                                        size)];
-    newPaintingView.backgroundColor = [UIColor clearColor];
-    [newPaintingView erase];
-    newPaintingView.hidden = YES;
-    [self.paintingBackground addSubview:newPaintingView];
-    self.circlePaintingView = newPaintingView;
-    newPaintingView.imageSize = newPaintingView.frame.size;
-    self.circlePaintingView.brushWidth = 10;
-    self.circlePaintingView.color = [UIColor grayColor];
 
 }
--(ANPaintingView *)circlePaintingView {
-    NSInteger size = [self.circleRadiusTextField.text integerValue];
-    ANPaintingView * newPaintingView = [[ANPaintingView alloc] initWithFrame:CGRectMake(0, 0,
-                                                                                        size,
-                                                                                        size)];
-    newPaintingView.backgroundColor = [UIColor clearColor];
-    [newPaintingView erase];
-    newPaintingView.hidden = YES;
-    [self.paintingBackground addSubview:newPaintingView];
-    self.circlePaintingView = newPaintingView;
-    newPaintingView.imageSize = newPaintingView.frame.size;
-    
-    self.circlePaintingView.brushWidth = 10;
-    self.circlePaintingView.color = [UIColor grayColor];
-}
+
+//-(ANPaintingView *)circlePaintingView {
+//    NSInteger size = [self.circleRadiusTextField.text integerValue];
+//    ANPaintingView * newPaintingView = [[ANPaintingView alloc] initWithFrame:CGRectMake(0, 0,
+//                                                                                        size,
+//                                                                                        size)];
+//    newPaintingView.backgroundColor = [UIColor clearColor];
+//    [newPaintingView erase];
+//    newPaintingView.hidden = YES;
+//    [self.paintingBackground addSubview:newPaintingView];
+//    self.circlePaintingView = newPaintingView;
+//    newPaintingView.imageSize = newPaintingView.frame.size;
+//    
+//    self.circlePaintingView.brushWidth = 10;
+//    self.circlePaintingView.color = [UIColor grayColor];
+//}
 
 - (IBAction)drawCircleMask:(UIButton *)sender {
     sender.selected = !sender.selected;
     self.isDrawingCircle = sender.selected;
-
-    
-    
     
     self.circleRadiusTextField.enabled = YES;
     self.circleRadiusTextField.hidden = NO;
     self.okCircleButton.hidden = NO;
     self.okCircleButton.enabled = YES;
-    self.circlePaintingView.brushWidth = 5;
-    self.circlePaintingView.color = [UIColor grayColor];
 }
 
 - (IBAction)okButtonForCircleAction:(UIButton *)sender {
@@ -204,11 +219,12 @@
 #pragma mark - ANColorPickerDelegate
 - (void)colorPickerView:(ANColorPickerView *)colorPickerView didPickColor:(UIColor *)color {
     self.paintingView.color = color;
-    if (self.circlePaintingView){
-        self.circlePaintingView.brushWidth = 10;
+//    if (self.circlePaintingView){
         self.circlePaintingView.color = color;
-    }
-    [self.circlePaintingView renderLineFromPoint:CGPointMake(0, 0) toPoint:CGPointMake(100, 100)];
+//    }
+//    [self.circlePaintingView drawCircleWithRadius:30];
+    
+    [self.circlePaintingView drawCircleWithRadius:100];
 }
 
 
@@ -221,7 +237,15 @@
         case  UIGestureRecognizerStateBegan:
             if (self.isDrawingCircle){
                 location = [sender locationInView:self.paintingBackground];
-                [self.circlePaintingView drawCircleWithRadius:[self.circleRadiusTextField.text integerValue]];
+//                if (!self.circlePaintingView){
+//                    [self createCircleView];
+//                }
+                self.circlePaintingView.hidden = NO;
+                    self.circlePaintingView.brushWidth = 3;
+                self.circlePaintingView.backgroundColor = [UIColor clearColor];
+                self.circlePaintingView.color = [UIColor blackColor];
+//                [self.circlePaintingView drawCircleWithRadius:30];
+                
             } else {
                 location = [sender locationInView:self.paintingView];
             }
@@ -247,6 +271,8 @@
         [self.paintingView renderLineFromPoint:self.prevLocation toPoint:location];
     } else {
         self.circlePaintingView.center = location;
+        [self.paintingBackground layoutIfNeeded];
+//        [self.circlePaintingView drawCircleWithRadius:30];
     }
     self.prevLocation = location;
 }
